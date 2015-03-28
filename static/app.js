@@ -33,7 +33,6 @@ var drawCharts = function(labels, temps, humis) {
     scaleShowVerticalLines: false,
     pointDotRadius: 3,
     datasetStroke: false,
-    showTooltips: false,
     animation: false
   };
 
@@ -74,8 +73,8 @@ var fetchAllData = function(callback) {
         if ((i + 1) % size == 0) {
           processed.push({
             ts: results[i].ts,
-            temp: temps / size,
-            humi: humis / size
+            temp: (temps / size).toFixed(2),
+            humi: (humis / size).toFixed(2)
           });
           var temps = 0.0;
           var humis = 0.0;
