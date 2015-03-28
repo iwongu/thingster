@@ -63,7 +63,25 @@ var fetchAllData = function(callback) {
   var data = [];
   fetchData(0, {
     results: function(results) {
-      $.merge(data, results);
+      var processed = [];
+      var size = 20;
+      var temps = 0.0;
+      var humis = 0.0;
+      for (var i = 0; i < results.length; i++) {
+        var result = results[i];
+        temps += result.temp;
+        humis += result.humi;
+        if ((i + 1) % size == 0) {
+          processed.push({
+            ts: results[i].ts,
+            temp: temps / size,
+            humi: humis / size
+          });
+          var temps = 0.0;
+          var humis = 0.0;
+        }
+      }
+      $.merge(data, processed);
     },
     done: function() {
       callback(data);
