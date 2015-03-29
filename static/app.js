@@ -63,7 +63,7 @@ var fetchAllData = function(callback) {
   fetchData(0, {
     results: function(results) {
       var processed = [];
-      var size = 20;
+      var size = 100;
       var temps = 0.0;
       var humis = 0.0;
       for (var i = 0; i < results.length; i++) {
